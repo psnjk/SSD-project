@@ -1,9 +1,14 @@
 import java.util.Vector;
 
-public abstract class DateReport implements  IReport {
+public class DateReport implements  IReport {
     // TODO one is not complete yet from C++
     protected Date date;
     protected Vector<Event> events;
+
+    public DateReport()
+    {
+
+    }
     public String Title()
     {
         // TODO :
