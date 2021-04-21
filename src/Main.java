@@ -1,4 +1,5 @@
-import java.util.Date;
+
+import java.time.LocalDate;
 import java.util.Vector;
 
 public class Main {
@@ -9,22 +10,45 @@ public class Main {
         Student ziad = new Student("Mohamad Ziad");
         Student ruslan = new Student("Ruslan");
         Student jam = new Student("Jameel");
-        Date now = new Date(System.currentTimeMillis());
 
-        Event e = new Event(now, Event.Type.Lecture, ssd);
-        Vector<Student> att = new Vector<Student>();
-        att.add(isabelle);
-        att.add(ruslan);
-        e.setAttendees(att);
+        InMemoryEventStore store = new InMemoryEventStore();
 
-        Event e1 = new Event(now, Event.Type.Tutorial, ssd);
-        e1.setAttendees(att);
+        Event e = new Event();
+        e.type = Event.Type.Lecture;
+        e.date = LocalDate.of(2021, 4, 21);
+        e.course = ssd;
+        e.attendees.add(isabelle);
+        e.attendees.add(jam);
+        e.attendees.add(ziad);
+        store.AddEvent(e.Clone());
 
-        Vector<Event> events = new Vector<Event>();
-        events.add(e);
-        events.add(e1);
+        e.type = Event.Type.Tutorial;
+        e.attendees.remove(ziad);
+        store.AddEvent(e.Clone());
 
+        e.type = Event.Type.Exam;
+        e.date = LocalDate.of(2021, 4, 28);
+        e.attendees.add(ziad);
+        e.attendees.add(ruslan);
+        e.marks.add(1000);
+        e.marks.add(1001);
+        e.marks.add(1002);
+        e.marks.add(1003);
+        store.AddEvent(e.Clone());
 
+        ReportGenerator gen = new DateReportGenerator(
+                LocalDate.of(2021, 4, 21),
+                store);
 
+        String report1 = gen.AsText();
+
+        gen = new DateReportGenerator(
+                LocalDate.of(2021, 4, 28),
+                store);
+
+        String report2 = gen.AsText();
+
+        System.out.println(report1);
+        System.out.println(report2);
     }
 }

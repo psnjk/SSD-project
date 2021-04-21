@@ -1,27 +1,19 @@
+import java.time.LocalDate;
 import java.util.Vector;
 
 public class DateReport implements  IReport {
-    // TODO one is not complete yet from C++
-    protected Date date;
-    protected Vector<Event> events;
+    public LocalDate date;
+    public Vector<Event> events;
 
     public DateReport()
     {
-
+        events = new Vector<>();
     }
+
+    @Override
     public String Title()
     {
-        // TODO :
-//        std::string Title() override
-//        {
-//            std::string out;
-//            out.resize(50, '#');
-//            auto n = std::strftime(&out[0], 50, "%F", &date);
-//            out.resize(n);
-//
-//            return out;
-//        }
-        return "";
+        return date.toString();
     }
 
     @Override
@@ -37,7 +29,7 @@ public class DateReport implements  IReport {
     @Override
     public Vector<String> SectionContents(int x) {
         Event ev = events.elementAt(x);
-        Vector<String> contents = new Vector<String>();
+        Vector<String> contents = new Vector<>();
         for(int i = 0 ;i < ev.attendees.size();i++)
         {
             String line = ev.attendees.elementAt(i).Name();

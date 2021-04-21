@@ -1,11 +1,12 @@
+import java.time.LocalDate;
 import java.util.Vector;
 
 public class DateReportGenerator extends  ReportGenerator {
 
-    public DateReportGenerator(Date date, Vector<Event> events)
+    public DateReportGenerator(LocalDate date, IEventStore store)
     {
         this.date = date;
-        this.events = events;
+        this.events = store.FetchEventHistory();
     }
 
     @Override
@@ -20,6 +21,7 @@ public class DateReportGenerator extends  ReportGenerator {
         }
         return report;
     }
+
     private Vector<Event> events;
-    private Date date;
+    private LocalDate date;
 }

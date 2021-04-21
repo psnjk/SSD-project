@@ -1,17 +1,25 @@
-import java.util.Date;
+import java.time.LocalDate;
+
 import java.util.Vector;
+import java.util.Date;
 
 public class Event {
     enum Type{
         Lecture, Tutorial, Exam
     }
 
-    public Date date;
+    public LocalDate date;
     public Type type;
     public Course course;
 
     Vector<Student> attendees;
     Vector<Integer> marks;
+
+    Event()
+    {
+        attendees = new Vector<>();
+        marks = new Vector<>();
+    }
 
     public String Title()
     {
@@ -24,52 +32,20 @@ public class Event {
         return "";
     }
 
-    public Date Date()
+    public LocalDate Date()
     {
         return date;
     }
 
-    public void setAttendees(Vector<Student> attendees) {
-        this.attendees = attendees;
-    }
+    public Event Clone() {
+        Event e = new Event();
+        e.date = date;
+        e.type = type;
+        e.course = course;
 
-    public void setMarks(Vector<Integer> marks) {
-        this.marks = marks;
-    }
+        e.attendees.addAll(attendees);
+        e.marks.addAll(marks);
 
-    public void setType(Type type) {
-        this.type = type;
+        return e;
     }
-
-
-    public Event(Date date, Type type, Course course){
-        this.date = date;
-        this.type = type;
-        this.course = course;
-    }
-    /*
-     std::tm date;
-    Type type;
-    Course* course;
-    std::vector<Student*> attendees;
-    std::vector<int> marks;
-
-    std::string Title() const
-    {
-        switch (type)
-        {
-        case Type::Lecture:
-            return course->Title() + " Lecture";
-        case Type::Tutorial:
-            return course->Title() + " Tutorial";
-        case Type::Exam:
-            return course->Title() + " Exam";
-        }
-    }
-
-    std::tm Date() const
-    {
-        return date;
-    }
-     */
 }
