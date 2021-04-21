@@ -24,7 +24,7 @@ public class Main {
         events.add(e);
         events.add(e1);
 
-        
+
 
     }
 }

@@ -41,11 +41,6 @@ public class Event {
         this.type = type;
     }
 
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
-    }
-
 
     public Event(Date date, Type type, Course course){
         this.date = date;
