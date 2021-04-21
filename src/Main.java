@@ -20,21 +20,29 @@ public class Main {
         e.attendees.add(isabelle);
         e.attendees.add(jam);
         e.attendees.add(ziad);
-        store.AddEvent(e.Clone());
+        store.AddEvent(e);
 
+        e = new Event();
         e.type = Event.Type.Tutorial;
-        e.attendees.remove(ziad);
-        store.AddEvent(e.Clone());
+        e.date = LocalDate.of(2021, 4, 21);
+        e.course = ssd;
+        e.attendees.add(isabelle);
+        e.attendees.add(jam);
+        store.AddEvent(e);
 
+        e = new Event();
         e.type = Event.Type.Exam;
         e.date = LocalDate.of(2021, 4, 28);
+        e.course = ssd;
+        e.attendees.add(isabelle);
+        e.attendees.add(jam);
         e.attendees.add(ziad);
         e.attendees.add(ruslan);
         e.marks.add(1000);
         e.marks.add(1001);
         e.marks.add(1002);
         e.marks.add(1003);
-        store.AddEvent(e.Clone());
+        store.AddEvent(e);
 
         ReportGenerator gen = new DateReportGenerator(
                 LocalDate.of(2021, 4, 21),

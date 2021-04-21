@@ -36,16 +36,4 @@ public class Event {
     {
         return date;
     }
-
-    public Event Clone() {
-        Event e = new Event();
-        e.date = date;
-        e.type = type;
-        e.course = course;
-
-        e.attendees.addAll(attendees);
-        e.marks.addAll(marks);
-
-        return e;
-    }
 }
