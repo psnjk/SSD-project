@@ -1,3 +1,4 @@
+import java.util.Date;
 import java.util.Vector;
 
 public class Event {
@@ -26,6 +27,20 @@ public class Event {
     public Date Date()
     {
         return date;
+    }
+
+    public void setAttendees(Vector<Student> attendees) {
+        this.attendees = attendees;
+    }
+
+    public void setMarks(Vector<Integer> marks) {
+        this.marks = marks;
+    }
+
+    public Event(Date date, Type type, Course course){
+        this.date = date;
+        this.type = type;
+        this.course = course;
     }
     /*
      std::tm date;
