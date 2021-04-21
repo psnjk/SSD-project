@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.Vector;
 import java.util.Date;
 
@@ -6,7 +7,7 @@ public class Event {
         Lecture, Tutorial, Exam
     }
 
-    public Date date;
+    public LocalDate date;
     public Type type;
     public Course course;
 
@@ -30,14 +31,14 @@ public class Event {
         return "";
     }
 
-    public Date Date()
+    public LocalDate Date()
     {
         return date;
     }
 
     public Event Clone() {
         Event e = new Event();
-        e.date = (Date)date.clone();
+        e.date = date;
         e.type = type;
         e.course = course;
 

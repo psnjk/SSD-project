@@ -1,4 +1,5 @@
 import java.util.Calendar;
+import java.time.LocalDate;
 
 public class Main {
 
@@ -12,7 +13,7 @@ public class Main {
 
         Event e = new Event();
         e.type = Event.Type.Lecture;
-        e.date = new java.util.Date(2021, Calendar.APRIL, 21);
+        e.date = LocalDate.of(2021, 4, 21);
         e.course = ssd;
         e.attendees.add(isabelle);
         e.attendees.add(ziad);
@@ -23,7 +24,7 @@ public class Main {
         store.AddEvent(e.Clone());
 
         e.type = Event.Type.Exam;
-        e.date = new java.util.Date(2021, Calendar.APRIL, 28);
+        e.date = LocalDate.of(2021, 4, 28);
         e.attendees.add(ziad);
         e.attendees.add(ruslan);
         e.marks.add(1000);
@@ -32,13 +33,13 @@ public class Main {
         store.AddEvent(e.Clone());
 
         ReportGenerator gen = new DateReportGenerator(
-                new java.util.Date(2021, Calendar.APRIL, 21),
+                LocalDate.of(2021, 4, 21),
                 store);
 
         String report1 = gen.AsText();
 
         gen = new DateReportGenerator(
-                new java.util.Date(2021, Calendar.APRIL, 28),
+                LocalDate.of(2021, 4, 28),
                 store);
 
         String report2 = gen.AsText();

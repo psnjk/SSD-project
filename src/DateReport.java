@@ -1,8 +1,8 @@
+import java.time.LocalDate;
 import java.util.Vector;
-import java.util.Date;
 
 public class DateReport implements  IReport {
-    public Date date;
+    public LocalDate date;
     public Vector<Event> events;
 
     public DateReport()

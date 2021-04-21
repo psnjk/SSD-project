@@ -3,7 +3,7 @@ import java.util.Vector;
 public abstract class ReportGenerator {
     public XML AsXML()
     {
-        // NOTE: Unspecified for the sake of assignment
+        // STUB
         return new XML();
     }
 
