@@ -1,5 +1,9 @@
 public class Student {
-    protected String name;
+    private String name;
+
+    Student(String name) {
+        this.name = name;
+    }
 
     public String Name()
     {

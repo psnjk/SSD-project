@@ -3,48 +3,40 @@ import java.util.Vector;
 public abstract class ReportGenerator {
     public XML AsXML()
     {
-        // TODO
+        // NOTE: Unspecified for the sake of assignment
         return new XML();
     }
+
     public String AsText()
     {
-        String result = "";
+        StringBuilder str = new StringBuilder();
+
         IReport report = generateReport();
         String title = report.Title();
-        // TODO NOt sure if this is fine :3
-        String out = title;
-        out += "\n";
-        for(int i = 0; i < title.length();i++)
-            out += "=";
-        out += "\n\n";
+
+        str.append(title);
+        str.append('\n');
+        str.append(new String(new char[title.length()]).replace('\0', '='));
+        str.append("\n\n");
+
         for(int i = 0; i < report.SectionCount();i++)
         {
-            out += "**" + report.SectionName(i) + "**\n";
+            str.append("**");
+            str.append(report.SectionName(i));
+            str.append("**\n");
 
             Vector<String> contents = report.SectionContents(i);
-            for(int j = 0; j < contents.size();j++)
-                out += "* " + contents.elementAt(j) + "\n";
+            for(int j = 0; j < contents.size();j++) {
+                str.append("* ");
+                str.append(contents.elementAt(j));
+                str.append('\n');
+            }
 
-            out+="\n";
+            str.append('\n');
         }
 
-        return out;
-        /*
-        auto title = report->Title();
-        out << title << '\n' << std::string(title.size(), '=') << "\n\n";
-        for (int i = 0; i < report->SectionCount(); i++)
-        {
-            out << "**" << report->SectionName(i) << "**\n";
-
-            auto contents = report->SectionContents(i);
-            for (auto& entry : contents)
-            out << "* " << entry << '\n';
-
-            out << '\n';
-        }
-        return out.str();
-        */
-
+        return str.toString();
     }
+
     protected abstract IReport generateReport();
 }

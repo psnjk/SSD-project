@@ -1,18 +1,19 @@
 import java.util.Vector;
+import java.util.Date;
 
 public class DateReportGenerator extends  ReportGenerator {
 
-    public DateReportGenerator(Date date, Vector<Event> events)
+    public DateReportGenerator(Date date, IEventStore store)
     {
         this.date = date;
-        this.events = events;
+        this.events = store.FetchEventHistory();
     }
 
     @Override
     protected IReport generateReport()
     {
         DateReport report = new DateReport();
-        report.date = this.date;
+        report.date = (Date)this.date.clone();
         for(int i = 0 ;i < events.size();i++)
         {
             if(events.elementAt(i).date.equals(this.date))
@@ -20,6 +21,7 @@ public class DateReportGenerator extends  ReportGenerator {
         }
         return report;
     }
+
     private Vector<Event> events;
     private Date date;
 }

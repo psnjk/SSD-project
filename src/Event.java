@@ -1,4 +1,5 @@
 import java.util.Vector;
+import java.util.Date;
 
 public class Event {
     enum Type{
@@ -11,6 +12,12 @@ public class Event {
 
     Vector<Student> attendees;
     Vector<Integer> marks;
+
+    Event()
+    {
+        attendees = new Vector<>();
+        marks = new Vector<>();
+    }
 
     public String Title()
     {
@@ -27,29 +34,16 @@ public class Event {
     {
         return date;
     }
-    /*
-     std::tm date;
-    Type type;
-    Course* course;
-    std::vector<Student*> attendees;
-    std::vector<int> marks;
 
-    std::string Title() const
-    {
-        switch (type)
-        {
-        case Type::Lecture:
-            return course->Title() + " Lecture";
-        case Type::Tutorial:
-            return course->Title() + " Tutorial";
-        case Type::Exam:
-            return course->Title() + " Exam";
-        }
-    }
+    public Event Clone() {
+        Event e = new Event();
+        e.date = (Date)date.clone();
+        e.type = type;
+        e.course = course;
 
-    std::tm Date() const
-    {
-        return date;
+        e.attendees.addAll(attendees);
+        e.marks.addAll(marks);
+
+        return e;
     }
-     */
 }

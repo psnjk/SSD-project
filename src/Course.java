@@ -1,8 +1,13 @@
 public class Course {
-    protected String title;
+    private String title;
+
+    Course(String title)
+    {
+        this.title = title;
+    }
+
     public String Title()
     {
         return title;
     }
-
 }
