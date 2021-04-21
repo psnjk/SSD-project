@@ -1,5 +1,6 @@
-import java.util.Calendar;
+
 import java.time.LocalDate;
+import java.util.Vector;
 
 public class Main {
 
@@ -8,6 +9,7 @@ public class Main {
         Student isabelle = new Student("Isabelle");
         Student ziad = new Student("Mohamad Ziad");
         Student ruslan = new Student("Ruslan");
+        Student jam = new Student("Jameel");
 
         InMemoryEventStore store = new InMemoryEventStore();
 
@@ -16,6 +18,7 @@ public class Main {
         e.date = LocalDate.of(2021, 4, 21);
         e.course = ssd;
         e.attendees.add(isabelle);
+        e.attendees.add(jam);
         e.attendees.add(ziad);
         store.AddEvent(e.Clone());
 
@@ -30,6 +33,7 @@ public class Main {
         e.marks.add(1000);
         e.marks.add(1001);
         e.marks.add(1002);
+        e.marks.add(1003);
         store.AddEvent(e.Clone());
 
         ReportGenerator gen = new DateReportGenerator(
